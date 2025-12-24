@@ -1,3 +1,73 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Django Blog</title>
+        <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header class="page-header">
+            <div class="container">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'post_new' %}" class="top-menu">+ New</a>
+                    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+                {% else %}
+                    <a href="{% url 'login' %}" class="top-menu">Login</a>
+                {% endif %}
+                <h1><a href="/">Django Blog</a></h1>
+            </div>
+        </header>
+        <main class="container">
+            <div class="row">
+                <div class="col">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </main>
+        <footer class="bg-secondary text-white text-center py-4 mt-5">
+            <div class="container">
+                <hr class="border-light w-25 mx-auto mb-4">
+                <p class="mb-0">
+                    <strong>Django Blog</strong> . &copy; 2024 ·
+                    <a href="#" class="text-white text-decoration-underline">Kebijakan Privasi</a> ·
+                    <a href="#" class="text-white text-decoration-underline">Syarat Layanan</a>
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>
+
+
 {% load static %}
 <!DOCTYPE html>
 <html>
